@@ -197,6 +197,9 @@ apiRoutes.get('/', function(req, res) {
     res.render('index.pug',{})
 });
 
+apiRoutes.get('/home', function(req, res) {
+        res.render('home.pug',{});
+});
 
 apiRoutes.get('/check', function(req, res) {
 	res.json(req.decoded);

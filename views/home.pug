@@ -1,0 +1,91 @@
+extends layout.pug
+
+
+
+block body
+
+            .container
+
+                button(ng-click='showNewMessage = !showNewMessage') New Message
+                button(ng-click='showNewQuestion = !showNewQuestion') New Question
+                button(ng-click='showNewToDo = !showNewToDo') New ToDo
+                div(ng-app='myApp', ng-show='false', ng-controller='messageCtrl')
+                  form.form-horizontal
+                    fieldset
+                      legend Message
+                      .form-group
+                        label.col-md-4.control-label(for='message-name') Message
+                        .col-md-4
+                          textarea#message-name.form-control(name='message-name', ng-model='message.name')
+                      .form-group
+                        label.col-md-4.control-label(for='submit')
+                        .col-md-4
+                          button#message-submit.btn.btn-primary(name='message-submit') Submit
+                          button#message-cancel.btn.btn-warning(name='message-cancel', ng-click="showNewMessage='false'") Cancel
+                div(ng-app='myApp', ng-show='false', ng-controller='qaCtrl')
+                  form.form-horizontal
+                    fieldset
+                      legend Question/Answer
+                      .form-group
+                        label.col-md-4.control-label(for='qa-question') Question
+                        .col-md-4
+                          input#qa-question.form-control.input-md(name='qa-question', ng-model='qa.question', type='text', placeholder='placeholder')
+                      .form-group
+                        label.col-md-4.control-label(for='qa-answer') Answer
+                        .col-md-4
+                          textarea#qa-answer.form-control(ng-model='qa.answer', name='qa-answer')
+                      .form-group
+                        .col-md-4
+                          button#qa-submit.btn.btn-primary(name='qa-submit') Submit
+                          button#qa-cancel.btn.btn-warning(name='qa-cancel', ng-click="showNewQuestion='false'") Cancel
+                div(ng-app='myApp', ng-show='false', ng-controller='todoCtrl')
+                  form.form-horizontal
+                    fieldset
+                      legend ToDo
+                      .form-group
+                        label.col-md-4.control-label(for='todo-name') Description
+                        .col-md-4
+                          input#todo-name.form-control.input-md(name='todo-name', ng-model='todo.name', type='text', placeholder='')
+                      .form-group
+                        label.col-md-4.control-label(for='todo-completed') Completed
+                        .col-md-4
+                          label.checkbox-inline(for='todo-completed')
+                            input#todo-completed(type='checkbox', name='todo-completed', ng-model='todo.completed', value='')
+                      .form-group
+                        label.col-md-4.control-label(for='todo-submit')
+                        .col-md-4
+                          // button id="todo-submit" name="todo-submit" class="btn btn-primary">Submit</button
+                          button#too-submit.btn.btn-primary(name='todo-submit') Submit
+                          button#todo-cancel.btn.btn-warning(name='todo-cancel', ng-click="showNewToDo='false'") Cancel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+block application
+    script(src='/app.js')
