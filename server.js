@@ -55,9 +55,18 @@ app.get('/setup', function(req, res) {
 	});
 });
 
+app.get('/signout',function(req,res) { 
+    res.clearCookie('user_token');
+    res.redirect('/');
+});
 // basic route (http://localhost:8080)
 app.get('/', function(req, res) {
-    res.render('index.pug',{})
+    var token = req.cookies['user_token'];
+    if(token && token.length > 500) { 
+        res.redirect('/home');
+    } else { 
+        res.render('index.pug',{});
+    }
 });
 
 // ---------------------------------------------------------
@@ -79,13 +88,15 @@ app.post('/authenticate', function(req, res) {
 		if (err) throw err;
 
 		if (!user) {
-            res.cookie('user_token', '');
+//            res.cookie('user_token', '');
+            res.clearCookie("user_token");
 			res.json({ success: false, message: 'Authentication failed. User '+req.body.username+' not found.' });
 		} else if (user) {
 
 			// check if password matches
 			if (user.password != req.body.password) {
-                res.cookie('user_token', '');
+            //    res.cookie('user_token', '');
+                res.clearCookie("user_token");
 				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
 			} else {
 
