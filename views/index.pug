@@ -1,0 +1,17 @@
+extends layout.pug
+
+
+
+block body
+
+            .container
+                form.form-signin(ng-app="myApp" ng-hide="login_hidden" ng-controller="signinCtrl")
+                    h2.form-signin-heading Please sign in
+                    input.input-block-level(type="text",ng-model="username", name="username", placeholder="Username")
+                    input.input-block-level(type="password", ng-model="password", name="password", placeholder="Password")
+                    button.btn.btn-large.btn-primary(id="signin",type="button" ng-click="do_signin();") Sign in
+                    div(ng-hide="error_hidden")
+                        p 
+                            |Wrong Credentials
+
+
