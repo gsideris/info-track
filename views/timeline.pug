@@ -1,0 +1,94 @@
+extends timelinelayout.pug
+
+
+
+block body
+
+        .col-md-12
+          // --------- New Message ----------
+          a#modal-new-message.btn(href='#modal-container-new-message', role='button', data-toggle='modal')
+            span.glyphicon.glyphicon-pencil
+          // --------- New ToDo ----------
+          a#modal-new-todo.btn(href='#modal-container-new-todo', role='button', data-toggle='modal')
+            span.glyphicon.glyphicon-list
+          // --------- New Question ----------
+          a#modal-new-question.btn(href='#modal-container-new-question', role='button', data-toggle='modal')
+            span.glyphicon.glyphicon-question-sign
+        .col-md-12
+          // --------- New Message ----------
+          #modal-container-new-message.modal.fade(role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                    | ×
+                  h4#myModalLabel.modal-title
+                    | New Message
+                .modal-body
+                  fieldset(id='new-message-fieldset')
+                    // Textarea
+                    .form-group
+                      label.col-md-4.control-label(for='textarea') Message
+                      .col-md-4
+                        textarea#name.form-control(name='name')
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal')
+                    | Close
+                  button#new-message-action.btn.btn-primary(type='button')
+                    | Add Message
+          // ---- New To Do ----------
+          #modal-container-new-todo.modal.fade(role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                    | ×
+                  h4#myModalLabel.modal-title
+                    | New ToDo
+                .modal-body
+                  fieldset(id='new-todo-fieldset')
+                    // Prepended checkbox
+                    .form-group
+                      label.col-md-4.control-label(for='prependedcheckbox') ToDo
+                      .col-md-4
+                        .input-group
+                          span.input-group-addon
+                            input(type='checkbox', name='completed')
+                          input#name.form-control(name='name', type='text', placeholder='')
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal')
+                    | Close
+                  button#new-todo-action.btn.btn-primary(type='button')
+                    | Add ToDo 
+          // - New Question/Answer ---
+          #modal-container-new-question.modal.fade(role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                    | ×
+                  h4#myModalLabel.modal-title
+                    | New Question/Answer
+                .modal-body
+                  fieldset(id='new-qa-fieldset')
+                    // Text input
+                    .form-group
+                      label.col-md-4.control-label(for='name') Question
+                      .col-md-4
+                        input#question.form-control.input-md(name='question', type='text', placeholder='how ...')
+                    .form-group
+                      label.col-md-4.control-label(for='answer') Answer
+                      .col-md-4
+                        textarea#answer.form-control(name='answer')
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal')
+                    | Close
+                  button#new-qa-action.btn.btn-primary(type='button')
+                    | Add Q/A
+        // -- Timeline --
+        .container
+          .page-header
+            h1#timeline Timeline
+          #timeline-elements.timeline-centered
+
+
